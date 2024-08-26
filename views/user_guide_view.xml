@@ -1,0 +1,127 @@
+<odoo>
+  <data>
+    <!-- Tree View -->
+    <record id="view_user_guide_tree" model="ir.ui.view">
+      <field name="name">user.guide.tree</field>
+      <field name="model">user.guide</field>
+      <field name="arch" type="xml">
+        <tree string="User Guides" decoration-muted="status == 'cancelled'">
+          <header>
+          </header>
+          <field name="image" widget="image" options="{'size': [50, 50]}" />
+          <field name="name" readonly="1" />
+          <field name="category_id" readonly="1" />
+          <field name="summary" readonly="1" />
+          <field name="status" widget="badge" decoration-danger="status == 'cancelled'" decoration-info="status == 'draft'" decoration-success="status == 'approved'" readonly="1" />
+          <field name="user_group_ids" widget="many2many_tags" readonly="1" />
+          <field name="file_ids" widget="many2many_binary" options="{'accepted_file_types': 'image/*,application/pdf'}" readonly="1" />
+          <field name="last_edited_time" readonly="1" />
+           <button name="action_open" type="object" string="Open" icon="fa-folder-open" />
+        </tree>
+      </field>
+       <!-- <field name="action" ref="action_user_guide_form_view" /> -->
+    </record>
+
+    <!-- Form View -->
+    <record id="view_user_guide_form" model="ir.ui.view">
+      <field name="name">user.guide.form</field>
+      <field name="model">user.guide</field>
+      <field name="arch" type="xml">
+        <form string="User Guide">
+          <sheet>
+            <group>
+              <group>
+                <field name="name" />
+                <field name="category_id" />
+                <field name="summary" />
+                <field name="status" />
+                <field name="user_group_ids" widget="many2many_tags" />
+              </group>
+              <group>
+                <field name="file_ids" widget="many2many_binary" />
+              </group>
+              <group>
+                <field name="content" widget="html" options="{'toolbar': 'full'}" />
+              </group>
+              <group>
+                <field name="last_edited_time" />
+              </group>
+              <group>
+               <field name="image" widget="image" options="{'size': [100, 100]}" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Quick Create Form View -->
+    <record id="view_user_guide_form_quick_create" model="ir.ui.view">
+      <field name="name">user.guide.form.quick.create</field>
+      <field name="model">user.guide</field>
+      <field name="arch" type="xml">
+        <form string="Tạo tài liệu mới">
+          <group>
+            <field name="name" />
+            <field name="category_id" />
+            <field name="summary" />
+            <field name="status" />
+            <field name="user_group_ids" widget="many2many_tags" options="{'no_create': True}" />
+            <field name="file_ids" widget="many2many_binary" options="{'accepted_file_types': 'image/*,application/pdf'}" />
+            <field name="last_edited_time" />
+              <field name="image" widget="image" />
+          </group>
+          <footer>
+            <!-- <button string="Tạo" name="create_quick_document" type="object" class="btn-primary" /> -->
+            <button string="Hủy" class="btn-secondary" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_user_guide_search" model="ir.ui.view">
+      <field name="name">user.guide.search</field>
+      <field name="model">user.guide</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="category_id" />
+          <field name="user_group_ids" />
+          <field name="status" />
+          <field name="image" />
+       <filter string="Active" name="active" domain="[('status','!=','cancelled')]" />
+       <filter string="Cancelled" name="cancelled" domain="[('status','=','cancelled')]" />
+       <filter string="All" name="all" domain="[]" />
+          <group expand="0" string="Group By">
+            <filter string="Category" name="group_by_category" context="{'group_by':'category_id'}" />
+            <filter string="Status" name="group_by_status" context="{'group_by':'status'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <!-- Action -->
+ <record id="action_user_guide" model="ir.actions.act_window">
+   <field name="name">User Guides</field>
+   <field name="res_model">user.guide</field>
+   <field name="view_mode">tree,form</field>
+   <field name="domain">[]</field>
+   <field name="context">{'search_default_active': 1, 'create': True}</field>
+   <field name="views" eval="[(ref('view_user_guide_tree'), 'tree'), (ref('view_user_guide_form'), 'form')]" />
+   <field name="binding_model_id" ref="model_user_guide" />
+   <field name="binding_type">action</field>
+   <field name="target">current</field>
+   <field name="view_id" ref="view_user_guide_tree" />
+   <field name="limit" eval="80" />
+   <field name="groups_id" eval="[]" />
+ </record>
+
+    <!-- Menu Item -->
+    <!-- <menuitem id="menu_user_guide_root" name="User Guide"  />
+    <menuitem id="menu_user_guide" name="User Guides" parent="menu_user_guide_root" action="action_user_guide" /> -->
+       <!-- Thêm menu Documentation vào dropdown Account -->
+   <!-- <menuitem id="menu_documentation" name="Documentation" parent="base.menu_user" action="action_user_guide" sequence="100" /> -->
+   <!-- <menuitem id="menu_user_guide" name="User Guide" action="action_user_guide" /> -->
+  </data>
+</odoo>

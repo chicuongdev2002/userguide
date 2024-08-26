@@ -1,0 +1,10 @@
+<odoo>
+  <data>
+    <record id="user_guide_action" model="ir.actions.act_window">
+      <field name="name">User Guide</field>
+      <field name="res_model">user.guide</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+       <menuitem id="user_guide_menu" name="User Guide" parent="base.menu_custom" sequence="10" action="user_guide_action" />
+  </data>
+</odoo>

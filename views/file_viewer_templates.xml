@@ -1,0 +1,7 @@
+<templates>
+  <t t-name="FileViewer">
+    <div class="o_file_viewer">
+      <!-- Nội dung iframe sẽ được thêm qua JavaScript -->
+    </div>
+  </t>
+</templates>

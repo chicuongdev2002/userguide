@@ -1,0 +1,7 @@
+<templates id="template" xml:space="preserve">
+  <t t-name="PdfViewer">
+    <div class="o_pdf_viewer">
+      <a t-att-data-pdf-url="pdf_url" class="btn btn-primary">View PDF</a>
+    </div>
+  </t>
+</templates>

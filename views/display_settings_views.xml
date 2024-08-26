@@ -1,0 +1,30 @@
+<odoo>
+  <data>
+    <!-- Form view để hiển thị giá trị của new_uom_field_1 -->
+    <record id="view_display_uom_field_form" model="ir.ui.view">
+      <field name="name">display.uom.field.form</field>
+      <field name="model">display.settings</field>
+      <field name="arch" type="xml">
+        <form string="Display UOM Field">
+          <sheet>
+            <group>
+              <field name="new_uom_field_1" readonly="1" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Action để mở form view -->
+    <record id="action_display_uom_field" model="ir.actions.act_window">
+      <field name="name">Display UOM Field</field>
+      <field name="res_model">display.settings</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_display_uom_field_form" />
+      <field name="target">current</field>
+    </record>
+
+    <!-- Menu item để truy cập trang mới -->
+    <menuitem id="menu_display_uom_field" name="Display UOM Field" parent="base.menu_config" sequence="10" action="action_display_uom_field" />
+  </data>
+</odoo>

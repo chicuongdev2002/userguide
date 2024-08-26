@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_display_settings,access.display.settings,model_display_settings,,1,0,0,0
+access_user_guide_viewer,user.guide viewer,model_user_guide,group_user_guide_user,1,0,0,0
+access_user_guide_manager,user.guide manager,model_user_guide,group_user_guide_manager,1,1,1,1
+access_attachment_user_guide_user,attachment user guide user,base.model_ir_attachment,group_user_guide_user,1,0,0,0
+access_attachment_user_guide_manager,attachment user guide manager,base.model_ir_attachment,group_user_guide_manager,1,1,1,1
